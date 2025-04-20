@@ -1,0 +1,22 @@
+{
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "@assets": "./src/assets",
+          "@constants": "./src/config/constants.ts",
+          "@config": "./src/config",
+          "@screens": "./src/screens",
+          "@navigation": "./src/navigation",
+          "@utils": "./src/utils",
+          "@src": "./src",
+          "@theme": "./src/theme",
+          "@common": "./src/common",
+          "@components": "./src/components"
+        }
+      }
+    ]
+  ]
+}
