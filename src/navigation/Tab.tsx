@@ -15,6 +15,9 @@ import NavigationUtil from './NavigationUtil'
 import images from '@assets/imageAssets'
 import HomeScreen from '@screens/app/home/HomeScreen'
 import AccountScreen from '@screens/app/account/AccountScreen'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import OtherScreen from '@screens/app/other/OtherScreen'
+import CalendarScreen from '@screens/app/calendar/CalendarScreen'
 
 type TabOption = {
   name: string
@@ -25,7 +28,7 @@ type TabOption = {
 }
 const Tab = createBottomTabNavigator()
 
-const { HOME, ACCOUNT } = MAIN_TAB
+const { HOME, ACCOUNT, OTHER, CALENDAR } = MAIN_TAB
 
 export const TAB_BAR: Record<string, TabOption> = {
   [HOME]: {
@@ -35,22 +38,14 @@ export const TAB_BAR: Record<string, TabOption> = {
     route: HomeScreen,
     title: 'Trang chủ',
   },
-  // [WORK]: {
-  //   name: MAIN_TAB.WORK,
-  //   icon: images.ic_note,
-  //   icon_focus: images.ic_note_focus,
 
-  //   route: WorkScreen,
-  //   title: 'Công việc',
-  // },
-  // [TIME_KEEP]: {
-  //   name: MAIN_TAB.TIME_KEEP,
-  //   icon: images.ic_clock,
-  //   icon_focus: images.ic_clock_focus,
-
-  //   route: TimeKeepScreen,
-  //   title: 'Chấm công',
-  // },
+  [CALENDAR]: {
+    name: MAIN_TAB.CALENDAR,
+    icon: images.ic_calendar,
+    icon_focus: images.ic_calendar_active,
+    route: CalendarScreen,
+    title: 'Lịch thi đấu',
+  },
   [ACCOUNT]: {
     name: MAIN_TAB.ACCOUNT,
     icon: images.ic_user,
@@ -59,18 +54,42 @@ export const TAB_BAR: Record<string, TabOption> = {
     route: AccountScreen,
     title: 'Tài khoản',
   },
+  [OTHER]: {
+    name: MAIN_TAB.OTHER,
+    icon: images.ic_more,
+    icon_focus: images.ic_more_active,
+
+    route: OtherScreen,
+    title: 'Khác',
+  },
 }
 
-const Drawers = () => {
+const Tabs = () => {
+  const inset = useSafeAreaInsets()
   return (
     <Tab.Navigator
+      // tabBar={tabBar={props => <TabbarCustom {...props} />}}
       screenOptions={({ navigation, route }) => ({
         headerShown: false,
 
-        tabBarStyle: { backgroundColor: 'white' },
+        tabBarStyle: {
+          backgroundColor: colors.brand,
+          position: 'absolute',
+          marginBottom: inset.bottom,
+          paddingBottom: moderateScale(6),
+          paddingTop: moderateScale(6),
+          marginHorizontal: moderateScale(12),
+          height: 'auto',
+          borderRadius: moderateScale(24),
+          borderTopWidth: 0,
+        },
+        tabBarLabelStyle: {
+          // marginBottom: 0,
+          // paddingBottom: 0,
+        },
 
         tabBarIcon: ({ focused }) => {
-          const tintColor = focused ? undefined : '#8C8C8C'
+          const tintColor = focused ? colors.white : colors.gray
           return (
             <FastImage
               style={styles.img_icon}
@@ -85,7 +104,7 @@ const Drawers = () => {
           )
         },
         tabBarLabel: ({ focused }) => {
-          const tintColor = focused ? colors.primary : '#8C8C8C'
+          const tintColor = focused ? colors.white : colors.gray
           return (
             <Text
               style={[
@@ -100,29 +119,29 @@ const Drawers = () => {
             </Text>
           )
         },
-        tabBarButton: props => {
-          return (
-            <TouchableOpacity
-              {...(props as TouchableOpacityProps)}
-              onPress={async e => {
-                // const token = await AsyncStorageService.getToken()
-                // if (route.name != MAIN_TAB.HOME && !token) {
-                //   showConfirm(
-                //     R.strings().noti,
-                //     R.strings().require_login_message,
-                //     () => {
-                //       NavigationUtil.navigate(SCREEN_ROUTER_AUTH.LOGIN)
-                //     },
-                //     R.strings().login,
-                //     ''
-                //   )
-                //   return
-                // }
-                if (props.onPress) props.onPress(e)
-              }}
-            />
-          )
-        },
+        // tabBarButton: props => {
+        //   return (
+        //     <TouchableOpacity
+        //       {...(props as TouchableOpacityProps)}
+        //       onPress={async e => {
+        //         // const token = await AsyncStorageService.getToken()
+        //         // if (route.name != MAIN_TAB.HOME && !token) {
+        //         //   showConfirm(
+        //         //     R.strings().noti,
+        //         //     R.strings().require_login_message,
+        //         //     () => {
+        //         //       NavigationUtil.navigate(SCREEN_ROUTER_AUTH.LOGIN)
+        //         //     },
+        //         //     R.strings().login,
+        //         //     ''
+        //         //   )
+        //         //   return
+        //         // }
+        //         if (props.onPress) props.onPress(e)
+        //       }}
+        //     />
+        //   )
+        // },
       })}
     >
       {Object.keys(TAB_BAR).map((item, index) => {
@@ -138,7 +157,7 @@ const Drawers = () => {
   )
 }
 
-export default Drawers
+export default Tabs
 
 const styles = StyleSheet.create({
   icon: {

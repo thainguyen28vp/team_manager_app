@@ -12,8 +12,8 @@ export const SCREEN_ROUTER = {
 
 export const MAIN_TAB = {
   HOME: 'HOME',
-  //   PRODUCT: 'PRODUCT',
-  //   ODER: 'ODER',
+  OTHER: 'OTHER',
+  CALENDAR: 'CALENDAR',
   ACCOUNT: 'ACCOUNT',
 }
 

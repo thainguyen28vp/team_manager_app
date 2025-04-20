@@ -6,5 +6,9 @@ const images = {
   img_error: require('./images/img_error.jpg'),
   img_empty: require('./images/img_empty.png'),
   ic_back: require('./images/ic_back.png'),
+  ic_more: require('./images/ic_more.png'),
+  ic_more_active: require('./images/ic_more_active.png'),
+  ic_calendar_active: require('./images/ic_calendar_active.png'),
+  ic_calendar: require('./images/ic_calendar.png'),
 }
 export default images

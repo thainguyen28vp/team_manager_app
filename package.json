@@ -38,8 +38,9 @@
     "react-native-safe-area-context": "^5.4.0",
     "react-native-screens": "^4.10.0",
     "react-native-splash-screen": "^3.3.0",
+    "react-native-svg": "^15.11.2",
     "react-redux": "^9.2.0",
-    "victory-native": "^41.17.1",
+    "victory-native": "^37.3.6",
     "yup": "^1.6.1"
   },
   "devDependencies": {
