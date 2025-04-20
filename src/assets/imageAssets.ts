@@ -10,5 +10,7 @@ const images = {
   ic_more_active: require('./images/ic_more_active.png'),
   ic_calendar_active: require('./images/ic_calendar_active.png'),
   ic_calendar: require('./images/ic_calendar.png'),
+  ic_bell: require('./images/ic_bell.png'),
+  ic_search: require('./images/ic_search.png'),
 }
 export default images

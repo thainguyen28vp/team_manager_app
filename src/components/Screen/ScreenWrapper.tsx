@@ -226,7 +226,7 @@ function ScreenWrapperComponent(props: ScreenWrapperProps) {
     dialogLoading,
     backgroundHeader,
     unsafe,
-    backgroundColor = 'white',
+    backgroundColor = 'transparent',
   } = props
   const renderBody = () => {
     const { isLoading, isError, reload } = props

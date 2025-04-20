@@ -7,9 +7,6 @@ import {
   View,
 } from 'react-native'
 import React from 'react'
-import { showConfirm } from '@utils/GlobalAlertHelper'
-import NavigationUtil from '@navigation/NavigationUtil'
-import { SCREEN_ROUTER_AUTH } from '@config/screenTypes'
 import ScreenWrapper from '@src/components/Screen/ScreenWrapper'
 import { colors, fonts, HEIGHT, WIDTH } from '@src/theme'
 import FastImage from '@d11/react-native-fast-image'
@@ -31,7 +28,7 @@ const HomeScreen = () => {
       <TouchableOpacity style={styles.btnNoi}>
         <FastImage
           tintColor={colors.white}
-          source={images.ic_calendar}
+          source={images.ic_bell}
           style={styles.icon}
         />
       </TouchableOpacity>
@@ -125,21 +122,27 @@ const HomeScreen = () => {
   )
 
   return (
-    <ScreenWrapper
-      scroll
-      style={styles.container}
-      unsafe
-      children={renderBody()}
-    />
+    <View style={styles.view}>
+      <ScreenWrapper
+        scroll
+        style={styles.container}
+        unsafe
+        children={renderBody()}
+      />
+    </View>
   )
 }
 
 export default HomeScreen
 
 const styles = StyleSheet.create({
-  container: {
+  view: {
+    flex: 1,
     backgroundColor: colors.primary,
+  },
+  container: {
     flexGrow: 1,
+    backgroundColor: colors.primary,
     paddingHorizontal: moderateScale(16),
     paddingBottom: HEIGHT * 0.15,
   },
